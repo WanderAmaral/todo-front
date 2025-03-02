@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { loginUser } from "@/app/_http/login-user";
 import { useAuthStore } from "@/app/_store/auth-store";
+import Link from "next/link";
 
 interface FormLoginProps {
   defaultValues?: FormSchema;
@@ -53,6 +54,7 @@ export default function FormLogin({ defaultValues }: FormLoginProps) {
       toast.error(`Bem vindo ${data.email}`);
     } catch (error) {
       console.error(error);
+      form.reset();
       toast.error("Email ou senha está incorreto!");
     }
   };
@@ -96,6 +98,15 @@ export default function FormLogin({ defaultValues }: FormLoginProps) {
             </Button>
           </form>
         </Form>
+        <span className="mt-4">
+          Não tem uma conta?{" "}
+          <Link
+            href={"/signup"}
+            className=" text-blue underline hover:text-blue-dark"
+          >
+            Cadastre-se
+          </Link>
+        </span>
       </div>
     </div>
   );
