@@ -1,10 +1,11 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Badge } from "@/app/_components/ui/badge";
+import { Button } from "@/app/_components/ui/button";
+import { Input } from "@/app/_components/ui/input";
 import { CirclePlus } from "lucide-react";
 import Image from "next/image";
+import TaskList from "../tasks/tasks-list";
 
-export default async function Home() {
+export default function Home() {
   return (
     <div className="h-screen">
       <div className="bg-[#0D0D0D] h-[250px]">
@@ -40,6 +41,9 @@ export default async function Home() {
               <span className="text-purple">Concluidas</span>
               <Badge className="bg-[#333333] rounded-full">2 de 5</Badge>
             </div>
+          </div>
+          <div className="mt-5">
+            <TaskList />
           </div>
         </div>
       </div>

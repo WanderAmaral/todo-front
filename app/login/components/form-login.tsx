@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/_components/ui/button";
 import {
   Form,
   FormControl,
@@ -8,15 +8,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@/app/_components/ui/form";
+import { Input } from "@/app/_components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { loginUser } from "@/app/_http/login-user";
-import { useAuthStore } from "@/app/_store/auth-store";
 import Link from "next/link";
 
 interface FormLoginProps {
@@ -33,9 +32,9 @@ type FormSchema = z.infer<typeof formSchema>;
 export default function FormLogin({ defaultValues }: FormLoginProps) {
   const route = useRouter();
 
-  const { token } = useAuthStore();
+  // const { token } = useAuthStore();
 
-  console.log(token);
+  // console.log(token);
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),

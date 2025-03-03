@@ -1,6 +1,5 @@
 import { create } from "zustand";
 
-// Definir o tipo da store
 type AuthStore = {
   token: string;
   setToken: (newToken: string) => void;
