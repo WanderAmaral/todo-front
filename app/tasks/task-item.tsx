@@ -14,10 +14,10 @@ const TaskItem = ({ task }: TaskItemProps) => {
     <Card className="bg-[#262626] border-zinc-600">
       <CardContent>
         <div className="flex justify-between items-center">
-          <Checkbox className="border-blue rounded-full" id="terms" />
+          <Checkbox className="border-blue rounded-full h-5 w-5" id="terms" />
           <Label className="text-white">{task.title}</Label>
           <Button variant={"ghost"}>
-            <Trash2 className="text-zinc-400" />
+            <Trash2 className="text-zinc-400 hover:text-black" />
           </Button>
         </div>
       </CardContent>
