@@ -31,11 +31,6 @@ type FormSchema = z.infer<typeof formSchema>;
 
 export default function FormLogin({ defaultValues }: FormLoginProps) {
   const route = useRouter();
-
-  // const { token } = useAuthStore();
-
-  // console.log(token);
-
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues ?? {
@@ -50,7 +45,7 @@ export default function FormLogin({ defaultValues }: FormLoginProps) {
       await loginUser(data);
       form.reset();
       route.push(`/`);
-      toast.error(`Bem vindo ${data.email}`);
+      toast.success(`Bem vindo ${data.email}`);
     } catch (error) {
       console.error(error);
       form.reset();

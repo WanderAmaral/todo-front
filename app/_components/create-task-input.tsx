@@ -1,4 +1,5 @@
 "use client";
+
 import { CirclePlus } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -17,7 +18,7 @@ import { useTaskStore } from "../_store/tasks-store";
 
 const formSchema = z.object({
   title: z.string().trim().min(1, {
-    message: "O titulo é obrigatório.",
+    message: "Por favor digite uma tarefa.",
   }),
 });
 
@@ -27,6 +28,8 @@ const CreateTaskInput = () => {
   const { token } = useAuthStore();
   const { addTask } = useTaskStore();
 
+  console.log(token)
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,13 +38,10 @@ const CreateTaskInput = () => {
   });
 
   const onSubmit = async (data: FormSchema) => {
-    console.log("Token:", token);
-
-    console.log(data.title);
     try {
       await addTask(data.title, token);
       form.reset();
-      console.log({ data });
+      //toast.success("Tarefa criada com sucesso");
     } catch (error) {
       console.log(error);
     }
