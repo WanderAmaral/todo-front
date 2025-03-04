@@ -1,9 +1,7 @@
 import { Badge } from "@/app/_components/ui/badge";
-import { Button } from "@/app/_components/ui/button";
-import { Input } from "@/app/_components/ui/input";
-import { CirclePlus } from "lucide-react";
 import Image from "next/image";
 import TaskList from "../tasks/tasks-list";
+import CreateTaskInput from "../_components/create-task-input";
 
 export default function Home() {
   return (
@@ -20,16 +18,7 @@ export default function Home() {
               sizes="100vw"
             />
           </div>
-
-          <div className="flex gap-4 w-full items-center">
-            <Input
-              placeholder="Adicione uma nova tarefa"
-              className="bg-[#262626] p-6 border-none"
-            />
-            <Button className="p-6 bg-blue-dark">
-              Criar <CirclePlus />
-            </Button>
-          </div>
+          <CreateTaskInput />
 
           <div className="flex justify-between pt-20">
             <div className="flex items-center gap-3">
