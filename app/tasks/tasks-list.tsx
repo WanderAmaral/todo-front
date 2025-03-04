@@ -1,31 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { fetchUserTasks } from "../_http/get-task-user";
+import { useEffect } from "react";
 import TaskItem from "./task-item";
-import { Task } from "../type/task";
+import { useTaskStore } from "../_store/tasks-store";
 
 const TaskList = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-
+  const { tasks, fetchTasks } = useTaskStore();
+  
   useEffect(() => {
-    const getTasks = async () => {
-      const data: Task[] = await fetchUserTasks();
-      if (data) {
-        setTasks(data);
-      }
-      console.log(data);
-    };
-
-    getTasks();
-  }, []);
+    fetchTasks();
+  }, [fetchTasks]);
 
   return (
-    <>
+    <div className="space-y-4">
       {tasks.map((task) => (
         <TaskItem key={task.id} task={task} />
       ))}
-    </>
+    </div>
   );
 };
 
