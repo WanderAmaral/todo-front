@@ -28,8 +28,6 @@ const CreateTaskInput = () => {
   const { token } = useAuthStore();
   const { addTask } = useTaskStore();
 
-  console.log(token)
-
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,7 +39,6 @@ const CreateTaskInput = () => {
     try {
       await addTask(data.title, token);
       form.reset();
-      //toast.success("Tarefa criada com sucesso");
     } catch (error) {
       console.log(error);
     }

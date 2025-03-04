@@ -22,7 +22,6 @@ export const useTaskStore = create<TaskStore>((set) => ({
       console.error("Erro ao buscar tasks:", error);
     }
   },
-
   addTask: async (title, token) => {
     try {
       const newTask = await createUserTask(title, token);

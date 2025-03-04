@@ -41,7 +41,6 @@ export default function FormLogin({ defaultValues }: FormLoginProps) {
 
   const onSubmit = async (data: FormSchema) => {
     try {
-      console.log({ data });
       await loginUser(data);
       form.reset();
       route.push(`/`);
