@@ -52,7 +52,7 @@ const CreateTaskInput = () => {
   return (
     <>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
           <div className="flex gap-4">
             <FormField
               control={form.control}
