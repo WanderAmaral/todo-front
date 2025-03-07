@@ -11,14 +11,25 @@ interface TaskItemProps {
 }
 
 const TaskItem = ({ task }: TaskItemProps) => {
-  const { removeTask } = useTaskStore();
+  const { removeTask, completeTask } = useTaskStore();
 
   return (
     <Card className="bg-[#262626] border-zinc-600">
       <CardContent>
         <div className="flex justify-between items-center">
-          <Checkbox className="border-blue rounded-full h-5 w-5" id="terms" />
-          <Label className="text-white">{task.title}</Label>
+          <Checkbox
+            checked={task.completed}
+            onClick={() => completeTask(task.id)}
+            className="border-blue rounded-full h-5 w-5"
+            id={`task-${task.id}`}
+          />
+          <Label
+            className={`text-white ${
+              task.completed ? "line-through text-gray-400" : ""
+            }`}
+          >
+            {task.title}
+          </Label>
           <Button onClick={() => removeTask(task.id)} variant={"ghost"}>
             <Trash2 className="text-zinc-400 hover:text-black" />
           </Button>

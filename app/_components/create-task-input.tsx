@@ -1,6 +1,6 @@
 "use client";
 
-import { CirclePlus } from "lucide-react";
+import { CirclePlus, LogIn } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import {
@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuthStore } from "../_store/auth-store";
 import { useTaskStore } from "../_store/tasks-store";
+import { redirect } from "next/navigation";
 
 const formSchema = z.object({
   title: z.string().trim().min(1, {
@@ -44,6 +45,10 @@ const CreateTaskInput = () => {
     }
   };
 
+  const handleChangedAccount = () => {
+    redirect("/login");
+  }
+
   return (
     <>
       <Form {...form}>
@@ -67,6 +72,9 @@ const CreateTaskInput = () => {
             />
             <Button type="submit" className="p-6 bg-blue-dark">
               Criar <CirclePlus />
+            </Button>
+            <Button type="button" onClick={handleChangedAccount} className="p-6 bg-blue-dark">
+              Trocar de conta <LogIn />
             </Button>
           </div>
         </form>

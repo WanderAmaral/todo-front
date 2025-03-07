@@ -3,12 +3,14 @@ import { fetchUserTasks } from "../_http/get-task-user";
 import { createUserTask } from "../_http/create-task";
 import { Task } from "../type/task";
 import { deleteTask } from "../_http/delete-task";
+import { completeTask } from "../_http/complete-task";
 
 type TaskStore = {
   tasks: Task[];
   fetchTasks: () => Promise<void>;
   addTask: (title: string, token: string) => Promise<void>;
   removeTask: (taskId: string) => void;
+  completeTask: (taskId: string) => void;
 };
 
 export const useTaskStore = create<TaskStore>((set) => ({
@@ -40,6 +42,27 @@ export const useTaskStore = create<TaskStore>((set) => ({
       }));
     } catch (error) {
       console.log(error);
+    }
+  },
+  completeTask: async (taskId) => {
+    try {
+      const taskToUpdate = useTaskStore
+        .getState()
+        .tasks.find((task) => task.id === taskId);
+  
+      if (!taskToUpdate) return;
+  
+      const newCompletedStatus = !taskToUpdate.completed; 
+  
+      await completeTask(taskId, newCompletedStatus); 
+  
+      set((state) => ({
+        tasks: state.tasks.map((task) =>
+          task.id === taskId ? { ...task, completed: newCompletedStatus } : task
+        ),
+      }));
+    } catch (error) {
+      console.error("Erro ao completar a task:", error);
     }
   },
 }));
